@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-navy: #1c2b4a;
-  --color-navy-deep: #141f36;
-  --color-mustard: #c49212;
-  --color-mustard-soft: #d4a84a;
-  --color-cream: #f6f1e6;
-  --color-cream-deep: #ebe3d4;
-  --color-chalk: #e8e4d9;
-  --color-ink: #12161f;
-  --color-steel: #8a9199;
-  --color-brass: #b08d57;
-  --color-brass-soft: #c9a66b;
-  --color-marble: #f3eee6;
+  --color-graphite: #16181a;
+  --color-steel: #2c3136;
+  --color-steel-mid: #4a5259;
+  --color-steel-light: #8b949e;
+  --color-kraft: #b8956a;
+  --color-kraft-deep: #8f7048;
+  --color-mustard: #c9a227;
+  --color-mustard-hot: #dbb43a;
+  --color-paper: #f3eee4;
+  --color-paper-deep: #e8e0d2;
+  --color-ink: #121416;
+  --color-rail: #d9dde1;
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
@@ -22,90 +22,90 @@ html {
 }
 
 body {
-  background: var(--color-cream);
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-mustard) 40%, white);
+  background: color-mix(in srgb, var(--color-mustard) 45%, white);
   color: var(--color-ink);
 }
 
-.opacity-wash {
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.steel-gradient {
   background:
-    linear-gradient(
-      180deg,
-      rgba(18, 22, 31, 0.45) 0%,
-      rgba(20, 31, 54, 0.62) 38%,
-      rgba(18, 22, 31, 0.9) 100%
-    );
+    linear-gradient(145deg, #3a4046 0%, #2c3136 38%, #1e2226 72%, #16181a 100%);
 }
 
-.kraft-grain {
-  background-image:
-    radial-gradient(ellipse at 18% 0%, rgba(176, 141, 87, 0.14), transparent 48%),
-    radial-gradient(ellipse at 92% 18%, rgba(28, 43, 74, 0.07), transparent 42%),
-    linear-gradient(180deg, #f8f4eb 0%, #f6f1e6 42%, #ebe3d4 100%);
-}
-
-.marble-wash {
-  background-image:
-    radial-gradient(ellipse at 10% 20%, rgba(255, 255, 255, 0.55), transparent 40%),
-    radial-gradient(ellipse at 80% 0%, rgba(176, 141, 87, 0.08), transparent 35%),
-    linear-gradient(135deg, #faf7f1 0%, #f3eee6 45%, #ebe4d8 100%);
-}
-
-.blackboard {
-  background:
-    radial-gradient(ellipse at 28% 18%, rgba(232, 228, 217, 0.07), transparent 48%),
-    linear-gradient(160deg, #1a2233 0%, #12161f 55%, #0e1219 100%);
-}
-
-.brass-rule {
-  height: 1px;
+.steel-rail {
   background: linear-gradient(
-    90deg,
-    transparent,
-    var(--color-brass) 20%,
-    var(--color-brass-soft) 50%,
-    var(--color-brass) 80%,
-    transparent
+    180deg,
+    #e8ebef 0%,
+    #c5c9ce 18%,
+    #9aa3ab 50%,
+    #c8ced4 82%,
+    #f0f2f4 100%
   );
 }
 
-.paper-card {
+.kraft-panel {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(246, 241, 230, 0.92)),
-    var(--color-cream);
-  border: 1px solid color-mix(in srgb, var(--color-navy) 10%, transparent);
-  box-shadow:
-    0 1px 0 rgba(176, 141, 87, 0.18),
-    0 12px 32px -18px rgba(28, 43, 74, 0.28);
+    radial-gradient(ellipse at 12% 0%, rgba(201, 162, 39, 0.08), transparent 45%),
+    linear-gradient(180deg, #f6f1e8 0%, #f3eee4 50%, #e8e0d2 100%);
 }
 
-.menu-card {
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.35s ease;
+.hero-steel-wash {
+  background:
+    linear-gradient(
+      105deg,
+      rgba(22, 24, 26, 0.92) 0%,
+      rgba(22, 24, 26, 0.78) 42%,
+      rgba(22, 24, 26, 0.35) 68%,
+      rgba(22, 24, 26, 0.55) 100%
+    );
 }
 
-.menu-card:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--color-brass) 45%, transparent);
-  box-shadow:
-    0 1px 0 rgba(176, 141, 87, 0.28),
-    0 18px 40px -20px rgba(28, 43, 74, 0.35);
+.mustard-rule {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-mustard),
+    transparent 90%
+  );
+}
+
+.editorial-row {
+  border-bottom: 1px solid color-mix(in srgb, var(--color-steel) 12%, transparent);
+  transition: background 0.25s ease, padding-left 0.25s ease;
+}
+
+.editorial-row:hover {
+  background: color-mix(in srgb, var(--color-kraft) 8%, transparent);
+  padding-left: 0.35rem;
+}
+
+.chip-active {
+  background: var(--color-graphite);
+  color: var(--color-paper);
+  box-shadow: 0 8px 24px -12px rgba(22, 24, 26, 0.55);
+}
+
+.chip-idle {
+  background: transparent;
+  color: var(--color-steel-mid);
+  border: 1px solid color-mix(in srgb, var(--color-steel) 18%, transparent);
+}
+
+.chip-idle:hover {
+  border-color: var(--color-kraft);
+  color: var(--color-ink);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .menu-card,
-  .menu-card:hover {
-    transition: none;
-    transform: none;
-  }
-
   *,
   *::before,
   *::after {

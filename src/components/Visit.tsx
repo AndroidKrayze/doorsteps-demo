@@ -1,57 +1,62 @@
+"use client";
+
 import { siteConfig } from "@/site.config";
-import { Reveal } from "@/components/Reveal";
+import { Reveal, SlideIn } from "@/components/Reveal";
 import { assetPath } from "@/lib/paths";
 
 export function Visit() {
   return (
-    <section id="visit" className="bg-cream py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[1.05fr_0.95fr]">
-        <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brass">
+    <section id="visit" className="kraft-panel py-20 sm:py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_1fr]">
+        <SlideIn>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-kraft-deep">
             Visit
           </p>
-          <h2 className="mt-3 font-[family-name:var(--font-display)] text-3xl text-navy sm:text-4xl">
+          <h2
+            className="mt-3 font-display text-3xl text-graphite sm:text-4xl"
+            style={{ fontWeight: 700 }}
+          >
             48 Blandford Street
           </h2>
-          <p className="mt-3 text-ink/75">
+          <p className="mt-3 text-steel-mid">
             {siteConfig.address.line1}
             <br />
             {siteConfig.address.line2}
           </p>
 
-          <div className="mt-8 space-y-3 rounded-sm border border-navy/10 bg-marble p-5">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-steel/10 bg-paper">
             {siteConfig.hours.summary.map((row) => (
               <div
                 key={row.days}
-                className="flex max-w-sm justify-between border-b border-navy/10 py-2 text-sm last:border-0"
+                className="flex justify-between border-b border-steel/10 px-5 py-3.5 text-sm last:border-0"
               >
-                <span className="font-medium text-navy">{row.days}</span>
-                <span className="text-ink/70">{row.time}</span>
+                <span className="font-medium text-graphite">{row.days}</span>
+                <span className="text-steel-mid">{row.time}</span>
               </div>
             ))}
           </div>
-          <p className="mt-4 max-w-md text-sm text-ink/60">{siteConfig.hours.note}</p>
+          <p className="mt-4 max-w-md text-sm text-steel-mid">{siteConfig.hours.note}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={siteConfig.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-sm bg-navy px-5 py-3 text-sm font-semibold text-cream transition hover:bg-navy-deep"
+              className="inline-flex rounded-full bg-graphite px-6 py-3 text-sm font-semibold text-paper transition hover:bg-steel"
             >
               Open in Google Maps
             </a>
             <a
               href={`tel:${siteConfig.phoneTel}`}
-              className="inline-flex rounded-sm border border-brass/40 px-5 py-3 text-sm font-semibold text-navy transition hover:border-mustard hover:text-mustard"
+              className="inline-flex rounded-full border border-kraft/50 px-6 py-3 text-sm font-semibold text-graphite transition hover:border-mustard hover:text-kraft-deep"
             >
               {siteConfig.phoneDisplay}
             </a>
           </div>
-        </Reveal>
+        </SlideIn>
 
         <Reveal delay={0.08} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-          <figure className="overflow-hidden rounded-sm">
+          <figure className="overflow-hidden rounded-2xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={assetPath("/assets/blandford-street-view.jpg")}
@@ -61,7 +66,7 @@ export function Visit() {
               height={1200}
             />
           </figure>
-          <figure className="overflow-hidden rounded-sm sm:max-w-xs lg:max-w-none">
+          <figure className="overflow-hidden rounded-2xl sm:max-w-xs lg:max-w-none">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={assetPath("/assets/faraday-plaque.jpg")}
@@ -70,7 +75,7 @@ export function Visit() {
               width={900}
               height={1200}
             />
-            <figcaption className="mt-2 text-xs text-ink/55">
+            <figcaption className="mt-2 text-xs text-steel-mid">
               Faraday plaque at No. 48 — building context only
             </figcaption>
           </figure>

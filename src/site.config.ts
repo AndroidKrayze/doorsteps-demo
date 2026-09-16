@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Doorsteps",
   legalName: "Doorsteps Sandwich Bar",
-  tagline: "Marylebone’s quiet luxury doorstep.",
+  tagline: "Stainless counter. Kraft for the walk.",
   description:
     "Premium sandwich bar on Blandford Street — full breakfast, chicken escalope, baguettes, jacket potatoes, and proper coffee before the office.",
   seoTitle: "Doorsteps | Sandwich Bar · Blandford Street Marylebone W1",
@@ -46,14 +46,15 @@ export const siteConfig = {
     "doorstepssandwichbar.co.uk",
     "doorstepsw1.co.uk",
   ],
-  /** Decoded from Doorsteps Marylebone chalkboard photo (felt letter board). Board £ figures are historic — UI never shows them as current. */
-  menuNote: "Prices ask at the counter — the board changes with the day.",
+  menuNote: "Prices at the counter — the rail changes with the day.",
   menuSections: [
     {
       id: "breakfast",
       label: "Breakfast",
-      eyebrow: "Early doors",
+      eyebrow: "07:30 open",
       intro: "From toast and eggs to a proper full breakfast before Baker Street.",
+      image: "/assets/doorsteps-eggmayo-coffee.jpg",
+      imageAlt: "Egg mayo sandwich and coffee at Doorsteps outdoor table",
       items: [
         {
           name: "Toast with butter",
@@ -81,33 +82,20 @@ export const siteConfig = {
     {
       id: "baguettes",
       label: "Baguettes & sandwiches",
-      eyebrow: "The rail",
+      eyebrow: "Built to order",
       intro:
-        "Roll or sandwich, French, bap, or ciabatta — built at the counter from the board.",
+        "Roll or sandwich, French, bap, or ciabatta — assembled at the rail from today’s fillings.",
+      image: "/assets/doorsteps-coffee-ciabatta.jpg",
+      imageAlt: "Coffee and toasted ciabatta at Doorsteps patio seating",
       groups: [
         {
           title: "Hot fillings",
           items: [
-            {
-              name: "Bacon",
-              blurb: "The Marylebone morning classic.",
-            },
-            {
-              name: "Egg & bacon",
-              blurb: "Two early-doors staples in one wrap.",
-            },
-            {
-              name: "Bacon & sausage",
-              blurb: "Stacked and ready for the office.",
-            },
-            {
-              name: "Fried egg",
-              blurb: "Simple, hot, and generous.",
-            },
-            {
-              name: "Sausage",
-              blurb: "Proper filling, no fuss.",
-            },
+            { name: "Bacon", blurb: "The Marylebone morning classic." },
+            { name: "Egg & bacon", blurb: "Two early-doors staples in one wrap." },
+            { name: "Bacon & sausage", blurb: "Stacked and ready for the office." },
+            { name: "Fried egg", blurb: "Simple, hot, and generous." },
+            { name: "Sausage", blurb: "Proper filling, no fuss." },
           ],
         },
         {
@@ -120,7 +108,8 @@ export const siteConfig = {
             },
             {
               name: "Grilled chicken",
-              blurb: "Same build as the escalope — salad, cheese, bacon, or Valdostana.",
+              blurb:
+                "Same build as the escalope — salad, cheese, bacon, or Valdostana.",
             },
             {
               name: "Fridge mixes",
@@ -134,7 +123,7 @@ export const siteConfig = {
             { name: "Cheddar", blurb: "Sharp and straightforward." },
             { name: "Brie", blurb: "Soft, creamy, lunch-hour ready." },
             { name: "Mozzarella", blurb: "Clean and mild." },
-            { name: "Tri colore", blurb: "The board’s colourful cheese special." },
+            { name: "Tri colore", blurb: "The colourful cheese special." },
           ],
         },
         {
@@ -150,7 +139,7 @@ export const siteConfig = {
             { name: "Tuna", blurb: "A steady lunch favourite." },
             { name: "Prawn", blurb: "Light and coastal." },
             { name: "Salmon", blurb: "Soft slices, deli-counter calm." },
-            { name: "Red salmon", blurb: "The richer cut on the board." },
+            { name: "Red salmon", blurb: "The richer cut." },
           ],
         },
         {
@@ -171,25 +160,21 @@ export const siteConfig = {
     {
       id: "hot",
       label: "Hot specials",
-      eyebrow: "From the counter",
-      intro: "Warm plates when a baguette isn’t quite enough.",
+      eyebrow: "Warm plates",
+      intro: "When a baguette isn’t quite enough.",
+      image: "/assets/doorsteps-deli-case.jpg",
+      imageAlt: "Deli case with salads and jacket potatoes at Doorsteps",
       items: [
         {
           name: "Escalope & pasta",
           blurb: "The house hot plate — chicken escalope with pasta.",
         },
-        {
-          name: "Pasta",
-          blurb: "Comforting, from the hot board.",
-        },
+        { name: "Pasta", blurb: "Comforting, from the hot rail." },
         {
           name: "Jacket potato",
           blurb: "From the counter — toppings as available.",
         },
-        {
-          name: "Soup",
-          blurb: "Ask what’s on today.",
-        },
+        { name: "Soup", blurb: "Ask what’s on today." },
       ],
     },
     {
@@ -197,6 +182,8 @@ export const siteConfig = {
       label: "Drinks",
       eyebrow: "Cup in hand",
       intro: "Tea, coffee, and the small luxuries that keep Blandford moving.",
+      image: "/assets/doorsteps-interior.jpg",
+      imageAlt: "Doorsteps interior with counter and seating",
       items: [
         { name: "Coffee", blurb: "Americano pace for the morning queue." },
         { name: "Espresso", blurb: "Short and decisive." },
@@ -208,9 +195,9 @@ export const siteConfig = {
     },
   ],
   specialties: [
-    "Felt letter board — the day’s truth in chalk-white type",
-    "Chicken escalope specials built as bap, sandwich, or ciabatta",
-    "Kraft-wrapped baguettes and coffee before the office",
+    "Polished counter rail and kraft wrap for the office walk",
+    "Chicken escalope specials as bap, sandwich, or ciabatta",
+    "Full breakfast and proper coffee before Baker Street",
   ],
   reviews: [
     {

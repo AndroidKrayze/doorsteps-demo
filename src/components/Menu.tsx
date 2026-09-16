@@ -1,132 +1,167 @@
 "use client";
 
-import { siteConfig } from "@/site.config";
+import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { siteConfig, type MenuSection } from "@/site.config";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
+import { assetPath } from "@/lib/paths";
+
+function ItemRows({
+  items,
+}: {
+  items: readonly { name: string; blurb: string }[];
+}) {
+  return (
+    <Stagger className="divide-y divide-steel/10" stagger={0.035}>
+      {items.map((item) => (
+        <StaggerItem key={item.name}>
+          <article className="editorial-row py-4 sm:py-5">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+              <h5 className="font-display text-lg text-graphite sm:text-xl" style={{ fontWeight: 600 }}>
+                {item.name}
+              </h5>
+              <span
+                className="hidden flex-1 border-b border-dotted border-steel/25 sm:block"
+                aria-hidden
+              />
+            </div>
+            <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-steel-mid">
+              {item.blurb}
+            </p>
+          </article>
+        </StaggerItem>
+      ))}
+    </Stagger>
+  );
+}
+
+function SectionBody({ section }: { section: MenuSection }) {
+  if ("groups" in section && section.groups) {
+    return (
+      <div className="space-y-10">
+        {section.groups.map((group) => (
+          <div key={group.title}>
+            <div className="mb-3 flex items-center gap-3">
+              <span className="h-0.5 w-5 bg-mustard" />
+              <h4 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-kraft-deep">
+                {group.title}
+              </h4>
+            </div>
+            <ItemRows items={group.items} />
+          </div>
+        ))}
+        {"extras" in section && section.extras ? (
+          <p className="rounded-xl border border-dashed border-kraft/40 bg-kraft/5 px-5 py-4 text-sm text-steel-mid">
+            {section.extras}
+          </p>
+        ) : null}
+      </div>
+    );
+  }
+
+  if ("items" in section) {
+    return <ItemRows items={section.items} />;
+  }
+
+  return null;
+}
 
 export function Menu() {
-  return (
-    <section id="menu" className="marble-wash relative py-20 sm:py-28">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brass/50 to-transparent" />
+  const [activeId, setActiveId] = useState<(typeof siteConfig.menuSections)[number]["id"]>(siteConfig.menuSections[0].id);
+  const reduce = useReducedMotion();
+  const active =
+    siteConfig.menuSections.find((s) => s.id === activeId) ??
+    siteConfig.menuSections[0];
 
+  return (
+    <section id="menu" className="kraft-panel relative py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brass">
-            The board
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-kraft-deep">
+            The rail
           </p>
-          <h2 className="mt-3 max-w-xl font-[family-name:var(--font-display)] text-3xl leading-tight text-navy sm:text-5xl">
-            A quiet luxury deli menu.
+          <h2
+            className="mt-3 max-w-2xl font-display text-3xl leading-tight text-graphite sm:text-5xl"
+            style={{ fontWeight: 700 }}
+          >
+            Editorial lunch list.
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink/70 sm:text-lg">
-            Decoded from the felt letter board at 48 Blandford Street — breakfast
-            through baguettes, hot plates, and coffee.{" "}
-            <span className="font-medium text-navy">{siteConfig.menuNote}</span>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-steel-mid sm:text-lg">
+            Breakfast through baguettes, hot plates, and coffee — assembled at
+            the counter on Blandford Street.{" "}
+            <span className="font-medium text-graphite">{siteConfig.menuNote}</span>
           </p>
         </Reveal>
 
-        {/* Desktop sticky section nav */}
-        <div className="mt-10 hidden lg:block">
-          <div className="sticky top-4 z-20 flex flex-wrap gap-2 rounded-sm border border-navy/10 bg-cream/90 p-2 shadow-sm backdrop-blur">
-            {siteConfig.menuSections.map((section) => (
-              <a
-                key={section.id}
-                href={`#${section.id}`}
-                className="rounded-sm px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-navy/70 transition hover:bg-navy hover:text-cream"
-              >
-                {section.label}
-              </a>
-            ))}
+        {/* Horizontal category chips — NOT sticky twin nav */}
+        <div className="mt-10 -mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-visible sm:px-0">
+          <div className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
+            {siteConfig.menuSections.map((section) => {
+              const isActive = section.id === activeId;
+              return (
+                <button
+                  key={section.id}
+                  type="button"
+                  onClick={() => setActiveId(section.id)}
+                  className={`rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] transition ${
+                    isActive ? "chip-active" : "chip-idle"
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  {section.label}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        <div className="mt-14 space-y-20">
-          {siteConfig.menuSections.map((section, sIdx) => (
-            <div key={section.id} id={section.id} className="scroll-mt-28">
-              <Reveal delay={0.02}>
-                <div className="flex flex-col gap-3 border-b border-navy/10 pb-6 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-mustard">
-                      {section.eyebrow}
-                    </p>
-                    <h3 className="mt-2 font-[family-name:var(--font-display)] text-2xl text-navy sm:text-3xl">
-                      {section.label}
-                    </h3>
-                    <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink/65">
-                      {section.intro}
-                    </p>
-                  </div>
-                  <p className="text-xs font-medium uppercase tracking-[0.14em] text-brass">
-                    Ask at the counter
+        {/* Split-screen: sticky food image + editorial list */}
+        <div className="mt-12 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+          <div className="relative lg:sticky lg:top-24 lg:self-start">
+            <AnimatePresence mode="wait">
+              <motion.figure
+                key={active.id}
+                className="overflow-hidden rounded-2xl"
+                initial={reduce ? false : { clipPath: "inset(0 100% 0 0)" }}
+                animate={{ clipPath: "inset(0 0% 0 0)" }}
+                exit={reduce ? undefined : { clipPath: "inset(0 0 0 100%)" }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={assetPath(active.image)}
+                  alt={active.imageAlt}
+                  className="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
+                  width={800}
+                  height={1000}
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-graphite/85 to-transparent px-5 pb-5 pt-16">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mustard">
+                    {active.eyebrow}
                   </p>
-                </div>
-              </Reveal>
+                  <p className="mt-1 font-display text-2xl text-paper" style={{ fontWeight: 600 }}>
+                    {active.label}
+                  </p>
+                </figcaption>
+              </motion.figure>
+            </AnimatePresence>
+          </div>
 
-              {"groups" in section && section.groups ? (
-                <div className="mt-8 space-y-12">
-                  {section.groups.map((group, gIdx) => (
-                    <div key={group.title}>
-                      <Reveal delay={0.04}>
-                        <div className="mb-4 flex items-center gap-3">
-                          <span className="h-px w-6 bg-brass/70" />
-                          <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/55">
-                            {group.title}
-                          </h4>
-                        </div>
-                      </Reveal>
-                      <Stagger
-                        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-                        stagger={0.04}
-                      >
-                        {group.items.map((item) => (
-                          <StaggerItem key={item.name}>
-                            <article className="menu-card paper-card h-full rounded-sm p-5 sm:p-6">
-                              <h5 className="font-[family-name:var(--font-display)] text-lg text-navy">
-                                {item.name}
-                              </h5>
-                              <p className="mt-2 text-sm leading-relaxed text-ink/65">
-                                {item.blurb}
-                              </p>
-                              <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.14em] text-steel">
-                                Ask at the counter
-                              </p>
-                            </article>
-                          </StaggerItem>
-                        ))}
-                      </Stagger>
-                    </div>
-                  ))}
-                  {"extras" in section && section.extras ? (
-                    <Reveal delay={0.06}>
-                      <p className="rounded-sm border border-dashed border-brass/35 bg-cream/60 px-5 py-4 text-sm text-ink/65">
-                        {section.extras}
-                      </p>
-                    </Reveal>
-                  ) : null}
-                </div>
-              ) : (
-                <Stagger
-                  className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-                  stagger={0.045 + sIdx * 0.005}
-                >
-                  {"items" in section &&
-                    section.items.map((item) => (
-                      <StaggerItem key={item.name}>
-                        <article className="menu-card paper-card h-full rounded-sm p-5 sm:p-6">
-                          <h5 className="font-[family-name:var(--font-display)] text-lg text-navy">
-                            {item.name}
-                          </h5>
-                          <p className="mt-2 text-sm leading-relaxed text-ink/65">
-                            {item.blurb}
-                          </p>
-                          <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.14em] text-steel">
-                            Ask at the counter
-                          </p>
-                        </article>
-                      </StaggerItem>
-                    ))}
-                </Stagger>
-              )}
-            </div>
-          ))}
+          <div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active.id}
+                initial={reduce ? false : { x: 28, opacity: 0.4 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={reduce ? undefined : { x: -16, opacity: 0.3 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <p className="text-sm leading-relaxed text-steel-mid">{active.intro}</p>
+                <div className="mustard-rule mt-6 mb-2 w-24" />
+                <SectionBody section={active} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

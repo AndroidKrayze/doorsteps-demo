@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, IBM_Plex_Sans } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import { siteConfig } from "@/site.config";
 import "./globals.css";
 
-const display = Libre_Baskerville({
+const display = Syne({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["500", "600", "700", "800"],
   display: "swap",
 });
 
-const sans = IBM_Plex_Sans({
+const sans = DM_Sans({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
