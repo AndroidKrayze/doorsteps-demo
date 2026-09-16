@@ -3,12 +3,16 @@
 @theme inline {
   --color-navy: #1c2b4a;
   --color-navy-deep: #141f36;
-  --color-mustard: #d4a017;
-  --color-mustard-soft: #e0b84a;
-  --color-cream: #f4efe4;
+  --color-mustard: #c49212;
+  --color-mustard-soft: #d4a84a;
+  --color-cream: #f6f1e6;
+  --color-cream-deep: #ebe3d4;
   --color-chalk: #e8e4d9;
   --color-ink: #12161f;
   --color-steel: #8a9199;
+  --color-brass: #b08d57;
+  --color-brass-soft: #c9a66b;
+  --color-marble: #f3eee6;
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
 }
@@ -24,7 +28,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--color-mustard) 45%, white);
+  background: color-mix(in srgb, var(--color-mustard) 40%, white);
   color: var(--color-ink);
 }
 
@@ -32,26 +36,76 @@ body {
   background:
     linear-gradient(
       180deg,
-      rgba(18, 22, 31, 0.55) 0%,
-      rgba(28, 43, 74, 0.72) 45%,
-      rgba(18, 22, 31, 0.88) 100%
+      rgba(18, 22, 31, 0.45) 0%,
+      rgba(20, 31, 54, 0.62) 38%,
+      rgba(18, 22, 31, 0.9) 100%
     );
 }
 
 .kraft-grain {
   background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(212, 160, 23, 0.12), transparent 50%),
-    radial-gradient(ellipse at 90% 20%, rgba(28, 43, 74, 0.08), transparent 45%),
-    linear-gradient(180deg, #f7f3ea 0%, #f4efe4 40%, #ebe4d6 100%);
+    radial-gradient(ellipse at 18% 0%, rgba(176, 141, 87, 0.14), transparent 48%),
+    radial-gradient(ellipse at 92% 18%, rgba(28, 43, 74, 0.07), transparent 42%),
+    linear-gradient(180deg, #f8f4eb 0%, #f6f1e6 42%, #ebe3d4 100%);
+}
+
+.marble-wash {
+  background-image:
+    radial-gradient(ellipse at 10% 20%, rgba(255, 255, 255, 0.55), transparent 40%),
+    radial-gradient(ellipse at 80% 0%, rgba(176, 141, 87, 0.08), transparent 35%),
+    linear-gradient(135deg, #faf7f1 0%, #f3eee6 45%, #ebe4d8 100%);
 }
 
 .blackboard {
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(232, 228, 217, 0.08), transparent 50%),
+    radial-gradient(ellipse at 28% 18%, rgba(232, 228, 217, 0.07), transparent 48%),
     linear-gradient(160deg, #1a2233 0%, #12161f 55%, #0e1219 100%);
 }
 
+.brass-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-brass) 20%,
+    var(--color-brass-soft) 50%,
+    var(--color-brass) 80%,
+    transparent
+  );
+}
+
+.paper-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(246, 241, 230, 0.92)),
+    var(--color-cream);
+  border: 1px solid color-mix(in srgb, var(--color-navy) 10%, transparent);
+  box-shadow:
+    0 1px 0 rgba(176, 141, 87, 0.18),
+    0 12px 32px -18px rgba(28, 43, 74, 0.28);
+}
+
+.menu-card {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--color-brass) 45%, transparent);
+  box-shadow:
+    0 1px 0 rgba(176, 141, 87, 0.28),
+    0 18px 40px -20px rgba(28, 43, 74, 0.35);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .menu-card,
+  .menu-card:hover {
+    transition: none;
+    transform: none;
+  }
+
   *,
   *::before,
   *::after {

@@ -10,9 +10,12 @@ export function Header() {
         >
           {siteConfig.name}
         </a>
-        <nav className="hidden items-center gap-8 text-sm font-medium text-chalk/90 md:flex">
-          <a href="#baguettes" className="transition hover:text-mustard-soft">
-            Baguettes
+        <nav className="hidden items-center gap-7 text-sm font-medium text-chalk/90 md:flex">
+          <a href="#menu" className="transition hover:text-mustard-soft">
+            Menu
+          </a>
+          <a href="#reviews" className="transition hover:text-mustard-soft">
+            Reviews
           </a>
           <a href="#visit" className="transition hover:text-mustard-soft">
             Visit

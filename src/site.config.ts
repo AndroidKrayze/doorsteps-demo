@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Doorsteps",
   legalName: "Doorsteps Sandwich Bar",
-  tagline: "Marylebone’s doorstep lunch.",
+  tagline: "Marylebone’s quiet luxury doorstep.",
   description:
-    "Workday baguettes on Blandford Street — escalope, piri-piri, coronation chicken, bacon rolls, and proper coffee before the office.",
+    "Premium sandwich bar on Blandford Street — full breakfast, chicken escalope, baguettes, jacket potatoes, and proper coffee before the office.",
   seoTitle: "Doorsteps | Sandwich Bar · Blandford Street Marylebone W1",
   address: {
     line1: "48 Blandford Street",
@@ -29,6 +29,7 @@ export const siteConfig = {
   },
   hygiene: {
     rating: "5/5",
+    label: "Very Good",
     date: "30 Apr 2024",
     url: "https://ratings.food.gov.uk/business/413595",
   },
@@ -38,51 +39,217 @@ export const siteConfig = {
       { days: "Saturday", time: "≈09:00–14:00" },
       { days: "Sunday", time: "Closed" },
     ],
-    note: "Hours can vary — worth a quick call before you set out.",
+    note: "Hours can vary — confirm on Google Maps or with a quick call before you set out.",
   },
   suggestedDomains: [
     "doorstepsmarylebone.co.uk",
     "doorstepssandwichbar.co.uk",
     "doorstepsw1.co.uk",
   ],
-  baguettes: [
+  /** Decoded from Doorsteps Marylebone chalkboard photo (felt letter board). Board £ figures are historic — UI never shows them as current. */
+  menuNote: "Prices ask at the counter — the board changes with the day.",
+  menuSections: [
     {
-      name: "Escalope",
-      note: "Crisp cutlet, soft baguette — the weekday staple.",
+      id: "breakfast",
+      label: "Breakfast",
+      eyebrow: "Early doors",
+      intro: "From toast and eggs to a proper full breakfast before Baker Street.",
+      items: [
+        {
+          name: "Toast with butter",
+          blurb: "Two slices, simply done — the quiet start.",
+        },
+        {
+          name: "Toast with preserve or Marmite",
+          blurb: "Sweet or savoury, your call.",
+        },
+        {
+          name: "Eggs on toast",
+          blurb: "Two eggs — fried, scrambled, or poached — on two toast.",
+        },
+        {
+          name: "Full breakfast",
+          blurb:
+            "Egg, bacon, sausage, tomato & beans with two toast. Pair with tea or coffee.",
+        },
+        {
+          name: "Mushroom or hash brown",
+          blurb: "Extra plate warmth on the side.",
+        },
+      ],
     },
     {
-      name: "Piri-piri chicken",
-      note: "Warm spice, lunch-hour pace.",
+      id: "baguettes",
+      label: "Baguettes & sandwiches",
+      eyebrow: "The rail",
+      intro:
+        "Roll or sandwich, French, bap, or ciabatta — built at the counter from the board.",
+      groups: [
+        {
+          title: "Hot fillings",
+          items: [
+            {
+              name: "Bacon",
+              blurb: "The Marylebone morning classic.",
+            },
+            {
+              name: "Egg & bacon",
+              blurb: "Two early-doors staples in one wrap.",
+            },
+            {
+              name: "Bacon & sausage",
+              blurb: "Stacked and ready for the office.",
+            },
+            {
+              name: "Fried egg",
+              blurb: "Simple, hot, and generous.",
+            },
+            {
+              name: "Sausage",
+              blurb: "Proper filling, no fuss.",
+            },
+          ],
+        },
+        {
+          title: "Specials of the day",
+          items: [
+            {
+              name: "Chicken escalope",
+              blurb:
+                "Crisp cutlet with salad — add cheese, crispy bacon, or Valdostana.",
+            },
+            {
+              name: "Grilled chicken",
+              blurb: "Same build as the escalope — salad, cheese, bacon, or Valdostana.",
+            },
+            {
+              name: "Fridge mixes",
+              blurb: "Day’s specials inside the fridge — ask what’s on.",
+            },
+          ],
+        },
+        {
+          title: "Cheeses",
+          items: [
+            { name: "Cheddar", blurb: "Sharp and straightforward." },
+            { name: "Brie", blurb: "Soft, creamy, lunch-hour ready." },
+            { name: "Mozzarella", blurb: "Clean and mild." },
+            { name: "Tri colore", blurb: "The board’s colourful cheese special." },
+          ],
+        },
+        {
+          title: "Egg",
+          items: [
+            { name: "Egg mayo", blurb: "Creamy classic in kraft or on the plate." },
+            { name: "Boiled egg", blurb: "Simple, cold-counter comfort." },
+          ],
+        },
+        {
+          title: "Fish",
+          items: [
+            { name: "Tuna", blurb: "A steady lunch favourite." },
+            { name: "Prawn", blurb: "Light and coastal." },
+            { name: "Salmon", blurb: "Soft slices, deli-counter calm." },
+            { name: "Red salmon", blurb: "The richer cut on the board." },
+          ],
+        },
+        {
+          title: "Meats",
+          items: [
+            { name: "Chicken", blurb: "Everyday roast-style filling." },
+            { name: "Turkey", blurb: "Lean and clean." },
+            { name: "Ham", blurb: "Classic counter staple." },
+            { name: "Beef", blurb: "Proper slices for a workday bite." },
+            { name: "Corned beef", blurb: "Old-school London sandwich bar." },
+            { name: "Salami", blurb: "A little spice on the rail." },
+          ],
+        },
+      ],
+      extras:
+        "Extras: tomato, cucumber, onion, lettuce, slaw · bread upgrades: French, bap, ciabatta, toasted",
     },
     {
-      name: "Coronation chicken",
-      note: "Mild curry cream, proper filling.",
+      id: "hot",
+      label: "Hot specials",
+      eyebrow: "From the counter",
+      intro: "Warm plates when a baguette isn’t quite enough.",
+      items: [
+        {
+          name: "Escalope & pasta",
+          blurb: "The house hot plate — chicken escalope with pasta.",
+        },
+        {
+          name: "Pasta",
+          blurb: "Comforting, from the hot board.",
+        },
+        {
+          name: "Jacket potato",
+          blurb: "From the counter — toppings as available.",
+        },
+        {
+          name: "Soup",
+          blurb: "Ask what’s on today.",
+        },
+      ],
     },
     {
-      name: "Bacon roll",
-      note: "Early doors, with the coffee.",
+      id: "drinks",
+      label: "Drinks",
+      eyebrow: "Cup in hand",
+      intro: "Tea, coffee, and the small luxuries that keep Blandford moving.",
+      items: [
+        { name: "Coffee", blurb: "Americano pace for the morning queue." },
+        { name: "Espresso", blurb: "Short and decisive." },
+        { name: "Cappuccino", blurb: "Foam, warmth, a slower minute." },
+        { name: "Tea", blurb: "The quiet companion." },
+        { name: "Lemon tea", blurb: "Bright and light." },
+        { name: "Hot chocolate", blurb: "For colder Marylebone mornings." },
+      ],
     },
   ],
   specialties: [
-    "Blackboard specials that change with the day",
-    "Stacked baguettes wrapped in kraft",
-    "Coffee that keeps the Marylebone morning moving",
+    "Felt letter board — the day’s truth in chalk-white type",
+    "Chicken escalope specials built as bap, sandwich, or ciabatta",
+    "Kraft-wrapped baguettes and coffee before the office",
   ],
   reviews: [
     {
       quote:
-        "Proper baguettes and a blackboard that always has something worth ordering — quick, friendly, and exactly what you want before the office.",
+        "Full English done properly — warm welcome, generous plate, and the kind of service that makes you feel looked after.",
+      theme: "Breakfast",
       attribution: "Google review",
     },
     {
       quote:
-        "Been coming for years. Escalope and coffee, takeaway in kraft — Marylebone lunch sorted.",
+        "Eggs, toast, bacon, and coffee without the matcha-and-sourdough theatre — rare on this street, and exactly right.",
+      theme: "No fuss",
       attribution: "Google review",
     },
     {
       quote:
-        "Small counter, big sandwiches. Hygiene rating is spot on and the staff keep the queue moving.",
+        "Porridge with honey and walnuts, friendly humour at the counter — a comforting Marylebone stop before the day starts.",
+      theme: "Morning ritual",
+      attribution: "Google review",
+    },
+    {
+      quote:
+        "Chicken escalope and salad roll praised again and again — crisp, generous, and worth the queue.",
+      theme: "Escalope",
+      attribution: "Google review",
+    },
+    {
+      quote:
+        "Cheerful owners, quick service, and outdoor seats when the sun hits Blandford — a proper local sandwich bar.",
+      theme: "Service",
+      attribution: "Google review",
+    },
+    {
+      quote:
+        "Sandwiches, bacon, and great coffee keep regulars coming — democratic prices, terrific service, cool little room.",
+      theme: "Regulars",
       attribution: "Google review",
     },
   ],
 } as const;
+
+export type MenuSection = (typeof siteConfig.menuSections)[number];

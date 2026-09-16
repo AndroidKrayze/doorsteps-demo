@@ -1,7 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Trust } from "@/components/Trust";
-import { BaguetteRail } from "@/components/BaguetteRail";
+import { Menu } from "@/components/Menu";
 import { SpecialtyBand } from "@/components/SpecialtyBand";
 import { Reviews } from "@/components/Reviews";
 import { Visit } from "@/components/Visit";
@@ -15,7 +15,7 @@ export default function HomePage() {
       <Header />
       <Hero />
       <Trust />
-      <BaguetteRail />
+      <Menu />
       <SpecialtyBand />
       <Reviews />
       <Visit />
